@@ -1,5 +1,6 @@
-{% extends 'base.html' %} {%block title%}Home Page{%endblock%} {% block
-content%}
+{% extends 'base.html' %} 
+{%block title%}Home Page{%endblock%} 
+{% block content%}
 <h1 class="head">WELCOME TO BOGGLE GAME</h1>
 
 <div class="score-timing-container" hidden>
@@ -28,7 +29,7 @@ content%}
   <form action="/check-word" class="form">
     <label for="word">Guess a word:</label>
     <br />
-    <input type="text" name="word" placeholder="hello" required class="input"/>
+    <input type="text" name="word" placeholder="hello" required class="input" />
     <br />
     <button class="submitBtn">GUESS</button>
   </form>

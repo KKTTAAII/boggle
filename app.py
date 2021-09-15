@@ -12,12 +12,15 @@ debug = DebugToolbarExtension(app)
 
 @app.route("/")
 def start_board():
+    """build a game board"""
     board = boggle_game.make_board()
     session["board"] = board
     return render_template("home.html", board=board)
 
 @app.route("/check-word")
 def check_word():
+    """receive a word from request and check 
+    if the word is on the board"""
     word = request.args["word"]
     board = session["board"]
     result = boggle_game.check_valid_word(board, word)
@@ -25,6 +28,10 @@ def check_word():
 
 @app.route("/score", methods=["POST"])
 def show_score():
+    """
+    receive score data from request and 
+    find the highest score
+    """
     score = request.json["score"]
 
     session["count"] = session.get("count", 0) + 1
@@ -34,5 +41,4 @@ def show_score():
     session["score"] = user_score
     highest_score = max(user_score)
 
-    print(user_score)
     return jsonify({"highestscore": highest_score})
