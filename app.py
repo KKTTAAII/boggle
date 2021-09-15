@@ -14,6 +14,8 @@ debug = DebugToolbarExtension(app)
 def start_board():
     board = boggle_game.make_board()
     session["board"] = board
+    session["count"] = session.get('count', 0) + 1
+    print(session["count"])
     return render_template("home.html", board=board)
 
 @app.route("/check-word")
@@ -23,3 +25,9 @@ def check_word():
     result = boggle_game.check_valid_word(board, word)
     return jsonify({"result": result})
 
+@app.route("/score", methods=["POST"])
+def show_score():
+    score = request.json["score"]
+    session["score"] = session.get('score', score) 
+    print(session["score"])
+    return jsonify({"score": score})

@@ -1,7 +1,7 @@
 "use strict";
 
 const submitBtn = $(".submitBtn");
-const startBtn = $(".startBtn")
+const startBtn = $(".startBtn");
 let score = 0;
 let timeLeft = 60;
 let timer;
@@ -44,42 +44,42 @@ function checkWord(result, word) {
 
 function keepTrackOfScore(word) {
   score += word.length;
-  console.log(score);
   $(".score").text(score);
 }
 
-function timesUp() {
-  submitBtn.off("click");
+async function timesUp() {
+  // how to remove guess click?
   clearInterval(timer);
-  swal("Time's up");
-  // $('#playAgainButton').show();
+
+  const resp = await axios.post("/score", { score: score });
+  const userScore = resp.data.score;
+
+  $(".start-container").show();
+  startBtn.text("RESTART");
 }
 
 function startTimer() {
   timer = setInterval(updateTimer, 1000);
   updateTimer();
   $(".score-timing-container").show();
-  // $('#playAgainButton').hide();
 }
 
 function updateTimer() {
   timeLeft = timeLeft - 1;
   if (timeLeft >= 0) {
     $("#timer").text(timeLeft);
-    console.log(timeLeft);
   } else {
     timesUp();
   }
 }
 
-function startGameHandler(evt){
+function startGameHandler(evt) {
   evt.preventDefault();
   submitBtn.on("click", guessHandler);
-  $('.board-container').show();
-  $('.form-container').show();
+  $(".board-container").show();
+  $(".form-container").show();
+  $(".start-container").hide();
   startTimer();
-  startBtn.text("RESTART");
 }
 
-startBtn.on('click', startGameHandler)
-
+startBtn.on("click", startGameHandler);
