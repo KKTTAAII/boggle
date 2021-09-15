@@ -52,7 +52,9 @@ async function timesUp() {
   clearInterval(timer);
 
   const resp = await axios.post("/score", { score: score });
-  const userScore = resp.data.score;
+  const userHighestScore = resp.data.highestscore;
+  console.log(userHighestScore);
+ $('.highestscore').text(userHighestScore)
 
   $(".start-container").show();
   startBtn.text("RESTART");
