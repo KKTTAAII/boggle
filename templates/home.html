@@ -1,7 +1,13 @@
 {% extends 'base.html' %} {%block title%}Home Page{%endblock%} {% block
 content%}
 <h1 class="head">BOGGLE GAME</h1>
-<div class="board-container">
+
+<div class="score-timing-container" hidden>
+  <p>You have: <span id="timer">0</span> seconds remaining!</p>
+  <p1 class="p">Your score is: <span class="score">0</span></p1>
+</div>
+
+<div class="board-container" hidden>
   <table class="table">
     <tbody>
       {%for row in board%}
@@ -15,7 +21,7 @@ content%}
   </table>
 </div>
 
-<div class="form-container">
+<div class="form-container" hidden>
   <form action="/check-word">
     <label for="word">Guess a word:</label>
     <br />
@@ -28,9 +34,8 @@ content%}
 <div class="result">
 </div>
 
-
-<div class="playerTrack" hidden>
-  <p>You have: <span id="timer">0</span> seconds remaining!</p>
-  <p1 class="p">Your score is: <span class="score">0</span></p1>
+<div class="start-container">
+  <button class="startBtn">START GAME</button>
 </div>
+
 {% endblock %}

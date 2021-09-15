@@ -1,11 +1,12 @@
 "use strict";
 
 const submitBtn = $(".submitBtn");
+const startBtn = $(".startBtn")
 let score = 0;
 let timeLeft = 60;
 let timer;
 
-async function handler(event) {
+async function guessHandler(event) {
   event.preventDefault();
 
   $("h3").remove();
@@ -57,7 +58,7 @@ function timesUp() {
 function startTimer() {
   timer = setInterval(updateTimer, 1000);
   updateTimer();
-  $(".playerTrack").show();
+  $(".score-timing-container").show();
   // $('#playAgainButton').hide();
 }
 
@@ -71,4 +72,14 @@ function updateTimer() {
   }
 }
 
-submitBtn.on("click", handler);
+function startGameHandler(evt){
+  evt.preventDefault();
+  submitBtn.on("click", guessHandler);
+  $('.board-container').show();
+  $('.form-container').show();
+  startTimer();
+  startBtn.text("RESTART");
+}
+
+startBtn.on('click', startGameHandler)
+
