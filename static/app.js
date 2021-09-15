@@ -12,7 +12,7 @@ async function guessHandler(event) {
   $("h3").remove();
 
   const word = $("input").val();
-  check_if_word(word);
+  checkIfWord(word);
 
   const resp = await axios.get("/check-word", { params: { word: word } });
   const result = resp.data.result;
@@ -21,47 +21,54 @@ async function guessHandler(event) {
   checkWord(result, word);
 }
 
-function check_if_word(word) {
+function checkIfWord(word) {
   if (!word) {
     swal("Please make a guess");
   }
 }
 
 function checkWord(result, word) {
+  $(".result").empty();
   if (result === "ok") {
     keepTrackOfScore(word);
     return $(".result").append(
-      "<h3>Congrats! You guessed a correct word!</h3>"
+      "<p class='p'>Congrats! You guessed a correct word!</p>"
     );
   }
   if (result === "not-on-board") {
-    return $(".result").append("<h3>Sorry, the word is not on the board</h3>");
+    return $(".result").append(
+      "<p class='p'>Sorry, the word is not on the board</p>"
+    );
   }
   if (result === "not-word") {
-    return $(".result").append("<h3>That's not even a word!</h3>");
+    return $(".result").append("<p class='p'>That's not even a word!</p>");
   }
 }
 
 function keepTrackOfScore(word) {
   score += word.length;
-  $(".score").text(score);
+  return $(".score").text(score);
 }
 
 async function timesUp() {
-  // how to remove guess click?
   clearInterval(timer);
+
+  swal("Time's up");
 
   const resp = await axios.post("/score", { score: score });
   const userHighestScore = resp.data.highestscore;
   console.log(userHighestScore);
- $('.highestscore').text(userHighestScore)
+  $(".highestscore").text(userHighestScore);
 
   $(".start-container").show();
+  $(".highestScore").show();
   startBtn.text("RESTART");
+  $(".result").empty();
 }
 
 function startTimer() {
   timer = setInterval(updateTimer, 1000);
+  timeLeft = 60;
   updateTimer();
   $(".score-timing-container").show();
 }

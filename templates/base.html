@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{%block title%}{%endblock%}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}" />
+
   </head>
-  <body>
+  <body class="wholePage">
     {%block content%} {%endblock%}
     <script src="http://unpkg.com/jquery"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

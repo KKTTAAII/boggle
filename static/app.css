@@ -1,3 +1,54 @@
+.wholePage {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+}
+
 .head {
-    color: rgb(122, 56, 228);
+    color: #008CBA;
+    text-align: center;
+}
+
+.submitBtn, .startBtn {
+    font-family: 'Montserrat', sans-serif;
+    border-style: none;
+    height: 50px;
+    width: 150px;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+
+.submitBtn:hover, .startBtn:hover {
+    background-color: hsl(120, 100%, 100%);
+    color: black;
+    border: 2px solid #4CAF50; 
+    cursor: pointer;
+}
+
+
+.p, .start-container, .form-container {
+    text-align: center;
+}
+
+.table {
+    margin: auto;
+}
+
+.form-container {
+    margin-top: 20px;
+}
+
+.cell {
+    text-align: center;
+    border: 1px solid #8b48c2;
+    height: 30px;
+    width: 30px;
+}
+
+.input {
+    height: 30px;
+    margin-top: 10px;
 }

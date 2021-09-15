@@ -5,7 +5,9 @@ content%}
 <div class="score-timing-container" hidden>
   <p class="p">You have: <span id="timer">0</span> seconds remaining!</p>
   <p class="p">Your score is: <span class="score">0</span></p>
-  <p>Your highest score so far is <span class="highestscore">0</span></p>
+  <p class="p highestScore" hidden>
+    Your highest score so far is: <span class="highestscore">0</span>
+  </p>
 </div>
 
 <div class="board-container" hidden>
@@ -23,17 +25,16 @@ content%}
 </div>
 
 <div class="form-container" hidden>
-  <form action="/check-word">
+  <form action="/check-word" class="form">
     <label for="word">Guess a word:</label>
     <br />
-    <input type="text" name="word" placeholder="hello" required />
+    <input type="text" name="word" placeholder="hello" required class="input"/>
     <br />
-    <button class="submitBtn">Guess</button>
+    <button class="submitBtn">GUESS</button>
   </form>
 </div>
 
-<div class="result">
-</div>
+<div class="result"></div>
 
 <div class="start-container">
   <button class="startBtn">START GAME</button>
