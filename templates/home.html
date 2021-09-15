@@ -1,0 +1,36 @@
+{% extends 'base.html' %} {%block title%}Home Page{%endblock%} {% block
+content%}
+<h1 class="head">BOGGLE GAME</h1>
+<div class="board-container">
+  <table class="table">
+    <tbody>
+      {%for row in board%}
+      <tr class="row">
+        {%for letter in row%}
+        <td class="cell">{{letter}}</td>
+        {%endfor%}
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+</div>
+
+<div class="form-container">
+  <form action="/check-word">
+    <label for="word">Guess a word:</label>
+    <br />
+    <input type="text" name="word" placeholder="hello" required />
+    <br />
+    <button class="submitBtn">Guess</button>
+  </form>
+</div>
+
+<div class="result">
+</div>
+
+
+<div class="playerTrack" hidden>
+  <p>You have: <span id="timer">0</span> seconds remaining!</p>
+  <p1 class="p">Your score is: <span class="score">0</span></p1>
+</div>
+{% endblock %}
