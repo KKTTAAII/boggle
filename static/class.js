@@ -8,6 +8,7 @@ class Boggle {
     $(".submitBtn").on("click", this.guessHandler.bind(this));
     this.words = [];
     this.startTimer();
+    $("img").hide();
     $(".board-container").show();
     $(".form-container").show();
     $(".start-container").hide();
@@ -23,7 +24,7 @@ class Boggle {
         this.checkIfWord(word);
         return console.log("User needs to guess a word");
       }
-      const resp = await axios.get("/check-word", { params: { word: word } });
+      const resp = await axios.get("/check-word", { params: { "word": word } });
       const result = resp.data.result;
 
       $("input").val("");
@@ -87,7 +88,7 @@ class Boggle {
 
     swal("Time's up");
 
-    const resp = await axios.post("/score", { score: this.score });
+    const resp = await axios.post("/score", { "score": this.score });
     const userHighestScore = resp.data.highestscore;
     $(".highestscore").text(userHighestScore);
 

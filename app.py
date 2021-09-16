@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, flash, jsonify
+from flask import Flask, request, render_template, redirect, jsonify
 from flask.globals import session
 from flask_debugtoolbar import DebugToolbarExtension
 from boggle import Boggle

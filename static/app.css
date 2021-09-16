@@ -6,6 +6,8 @@
 .head {
     color: #008CBA;
     text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .submitBtn, .startBtn {
@@ -29,7 +31,7 @@
 }
 
 
-.p, .start-container, .form-container {
+.p, .start-container, .form-container, .img {
     text-align: center;
 }
 
@@ -38,17 +40,33 @@
 }
 
 .form-container {
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 .cell {
     text-align: center;
     border: 1px solid #8b48c2;
-    height: 30px;
-    width: 30px;
+    color: white;
+    background-color: teal;
+    border-radius: 5px;
+    height: 50px;
+    width: 50px;
 }
 
 .input {
     height: 30px;
     margin-top: 10px;
 }
+
+#timer{
+    color: rgb(156, 39, 45);
+}
+
+.score {
+    color: darkcyan;
+}
+
+.img {
+    margin-top: 50px;
+}
+
