@@ -3,9 +3,10 @@
 const submitBtn = $(".submitBtn");
 const startBtn = $(".startBtn");
 let score = 0;
-let timeLeft = 60;
+let timeLeft = 15;
 let timer;
 startBtn.on("click", startGameHandler);
+submitBtn.on("click", guessHandler);
 let words = [];
 
 async function guessHandler(event) {
@@ -15,10 +16,9 @@ async function guessHandler(event) {
   } else {
     const word = $("input").val();
     if (!word) {
-      return "User needs to guess a word";
+      checkIfWord(word);
+      return console.log("User needs to guess a word");
     }
-    checkIfWord(word);
-
     const resp = await axios.get("/check-word", { params: { word: word } });
     const result = resp.data.result;
     $("input").val("");
@@ -34,7 +34,7 @@ function checkIfWord(word) {
 }
 
 function checkWord(result, word) {
-  $(".result").empty();
+  emptyResultInDiv();
   if (result === "ok") {
     keepTrackOfScore(word);
     return $(".result").append(
@@ -72,13 +72,15 @@ async function timesUp() {
 
   $(".start-container").show();
   $(".highestScore").show();
+
   startBtn.text("RESTART");
-  $(".result").empty();
+  emptyResultInDiv();
+  reset();
 }
 
 function startTimer() {
   timer = setInterval(updateTimer, 1000);
-  timeLeft = 60;
+  timeLeft = 15;
   updateTimer();
   $(".score-timing-container").show();
 }
@@ -94,9 +96,18 @@ function updateTimer() {
 
 function startGameHandler(evt) {
   evt.preventDefault();
-  submitBtn.on("click", guessHandler);
   $(".board-container").show();
   $(".form-container").show();
   $(".start-container").hide();
   startTimer();
+}
+
+function reset() {
+  score = 0;
+  words = [];
+  $(".score").text(score);
+}
+
+function emptyResultInDiv() {
+  return $(".result").empty();
 }
